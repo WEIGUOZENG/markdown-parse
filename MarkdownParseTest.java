@@ -35,10 +35,6 @@ public class MarkdownParseTest {
         assertTrue("fail", exceptionThrown);
     }
 
-    @Test
-    public void addition1() {
-        assertEquals(99999999, 1 + 1);
-    }
 
     @Test
     public void testFile1() throws IOException {
