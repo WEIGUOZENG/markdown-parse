@@ -32,10 +32,6 @@ public class MarkdownParse {
                 break;
             }
 
-            if(closeParen == -1){
-                toReturn = null;
-                break;
-            }
             
             
             
