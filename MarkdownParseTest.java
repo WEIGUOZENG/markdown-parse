@@ -42,4 +42,11 @@ public class MarkdownParseTest {
         List<String> expect = List.of("https://something.com", "some-page.html");
         assertEquals(MarkdownParse.getLinks(contents), expect);
     }
+
+    @Test
+    public void testSnippet1() throws IOException{
+        String contents= Files.readString(Path.of("./snippet1.md"));
+        List<String> expect = List.of("`google.com");
+        assertEquals(MarkdownParse.getLinks(contents), expect);
+    }
 }
