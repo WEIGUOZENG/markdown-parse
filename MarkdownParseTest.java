@@ -2,6 +2,7 @@ import static org.junit.Assert.*;
 import org.junit.*;
 import java.io.File.*;
 import java.nio.file.Files;
+import java.nio.file.NoSuchFileException;
 import java.nio.file.Path;
 import java.util.List;
 import java.util.ArrayList;
@@ -43,10 +44,28 @@ public class MarkdownParseTest {
         assertEquals(MarkdownParse.getLinks(contents), expect);
     }
 
-    @Test
-    public void testSnippet1() throws IOException{
-        String contents= Files.readString(Path.of("./snippet1.md"));
-        List<String> expect = List.of("`google.com");
-        assertEquals(MarkdownParse.getLinks(contents), expect);
-    }
+   
+   @Test
+   public void testSnip1() throws IOException, NoSuchFileException {
+
+    String contents= Files.readString(Path.of("snippet1.md"));
+    List<String> expect = List.of("`google.com");
+    assertEquals(expect, MarkdownParse.getLinks(contents));
+   }
+   
+   @Test
+   public void testSnip2() throws IOException, NoSuchFileException {
+
+    String contents= Files.readString(Path.of("snippet2.md"));
+    List<String> expect = List.of("a.com", "a.com(())", "example.com");
+    assertEquals(expect, MarkdownParse.getLinks(contents));
+   }
+
+   @Test
+   public void testSnip3() throws IOException, NoSuchFileException {
+
+    String contents= Files.readString(Path.of("snippet3.md"));
+    List<String> expect = List.of("https://ucsd-cse15l-w22.github.io/");
+    assertEquals(expect, MarkdownParse.getLinks(contents));
+   }
 }
